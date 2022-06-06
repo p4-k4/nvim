@@ -68,7 +68,23 @@ nnoremap <leader>dl <cmd>DapShowLog<cr>
 nnoremap <leader>. <cmd>Telescope find_files<cr>
 nnoremap <leader>, <cmd>Telescope buffers<cr>
 nnoremap <leader>/ <cmd>Telescope live_grep<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>h <cmd>Telescope help_tags<cr>
+nnoremap <leader><leader> <cmd>Telescope keymaps<cr>
+
+
+
+
+" ###########################################################################
+" fakinsho/flutter-tools.nvim
+" ###########################################################################
+nnoremap <leader>fd <cmd>FlutterDevices<cr>
+nnoremap <leader>fD <cmd>FlutterDetatch<cr>
+nnoremap <leader>ff <cmd>FlutterRun<cr>
+nnoremap <leader>fq <cmd>FlutterQuit<cr>
+nnoremap <leader>fr <cmd>FlutterReload<cr>
+nnoremap <leader>fR <cmd>FlutterRestart<cr>
+nnoremap <leader>fpu <cmd>FlutterPubUpgrade<cr>
+nnoremap <leader>fpg <cmd>FlutterPubGet<cr>
 
 
 
