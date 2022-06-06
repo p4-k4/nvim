@@ -157,7 +157,7 @@ local kind_icons = {
   TypeParameter = ""
 }
 
-require'lspconfig'.dartls.setup{}
+--require'lspconfig'.dartls.setup{}
 
 local cmp = require'cmp'
 cmp.setup(
@@ -202,10 +202,10 @@ cmp.setup(
   }),
 
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
+    { name = 'nvim_lsp'},
+    { name = 'vsnip'},
   }, {
-    { name = 'buffer' },
+    { name = 'buffer'},
   })
 })
 
