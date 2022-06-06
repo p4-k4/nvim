@@ -53,7 +53,7 @@ nnoremap <Leader>pi :source $MYVIMRC <CR> <bar> :PlugInstall <CR>
 " ###########################################################################
 " mfussenegger/nvim-dap'
 " ###########################################################################
-nnoremap <leader>dc <cmd>DapContinue<cr>
+noremap <leader>dc <cmd>DapContinue<cr>
 nnoremap <leader>dr <cmd>DapToggleRepl<cr>
 nnoremap <leader>di <cmd>DapStepInto<cr>
 nnoremap <leader>do <cmd>DapStepOut<cr>
