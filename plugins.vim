@@ -20,6 +20,7 @@ Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'beauwilliams/focus.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'TimUntersberger/neogit'
 Plug 'andweeb/presence.nvim'
@@ -308,6 +309,7 @@ require("telescope").setup {
   }
 }
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension "file_browser"
 EOF
 
 
