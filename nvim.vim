@@ -6,6 +6,7 @@ set shortmess-=F
 set shiftwidth=2
 set number
 set nowrap
+set mouse =a
 
 " Remember last editing position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 

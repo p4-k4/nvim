@@ -16,7 +16,6 @@ nnoremap <Leader>qq :q<cr>
 
 
 
-
 " ###########################################################################
 " VIM - LSP
 " ###########################################################################
@@ -70,7 +69,17 @@ nnoremap <leader>, <cmd>Telescope buffers<cr>
 nnoremap <leader>/ <cmd>Telescope file_browser<cr>
 nnoremap <leader>l <cmd>Telescope live_grep<cr>
 nnoremap <leader>h <cmd>Telescope help_tags<cr>
+nnoremap <leader>ghg <cmd>Telescope gh gist<cr>
 nnoremap <leader><leader> <cmd>Telescope keymaps<cr>
+
+
+
+
+" ###########################################################################
+" folke/trouble.nvim
+" ###########################################################################
+nnoremap <leader>t <cmd>Trouble<cr>
+nnoremap <leader>T <cmd>TroubleClose<cr>
 
 
 

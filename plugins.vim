@@ -16,14 +16,17 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
 " Utils
+Plug 'folke/trouble.nvim'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'beauwilliams/focus.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'TimUntersberger/neogit'
 Plug 'andweeb/presence.nvim'
+Plug 'sedm0784/vim-resize-mode'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-telescope/telescope-github.nvim'
 " Plug 'nvim-telescope/telescope-file-browser.nvim'
 " Plug 'nvim-telescope/telescope-project.nvim'
 " Plug 'dunstontc/projectile.nvim'
@@ -53,6 +56,12 @@ Plug 'mfussenegger/nvim-dap'
 call plug#end()
 
 
+" ###########################################################################
+" folke/trouble.nvim
+" ###########################################################################
+lua << EOF
+require("trouble").setup {}
+EOF
 
 
 " ###########################################################################
@@ -292,6 +301,7 @@ EOF
 " nvim-telescope/telescope
 " ###########################################################################
 lua << EOF
+
 require("telescope").setup {
   sort_mru = true,
   sort_lastused = true,
@@ -305,11 +315,22 @@ require("telescope").setup {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {
       }
-    }
+    },
+    file_browser = {
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+        },
+        ["n"] = {
+        },
+      },
+    },
   }
 }
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension "file_browser"
+require('telescope').load_extension('gh')
+
 EOF
 
 
