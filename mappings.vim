@@ -51,6 +51,18 @@ nnoremap <Leader>pi :source $MYVIMRC <CR> <bar> :PlugInstall <CR>
 
 
 " ###########################################################################
+" mfussenegger/nvim-dap'
+" ###########################################################################
+nnoremap <leader>dc <cmd>DapContinue<cr>
+nnoremap <leader>dr <cmd>DapToggleRepl<cr>
+nnoremap <leader>di <cmd>DapStepInto<cr>
+nnoremap <leader>do <cmd>DapStepOut<cr>
+nnoremap <leader>dl <cmd>DapShowLog<cr>
+
+
+
+
+" ###########################################################################
 " nvim-telescope/telescope
 " ###########################################################################
 nnoremap <leader>. <cmd>Telescope find_files<cr>
