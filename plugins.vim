@@ -10,10 +10,11 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-vsnip'
 
 " Snippets
-Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'mthuong/vscode-flutter-freezed-helper'
 
 " Utils
 Plug 'folke/trouble.nvim'
@@ -64,9 +65,24 @@ Plug 'mfussenegger/nvim-dap'
 call plug#end()
 
 
+" ###########################################################################
+" Vsnip
+" ###########################################################################
+"
+let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip/')
+
+
+
+
+" ###########################################################################
+" Bufferline 
+" ###########################################################################
 lua << EOF
 require("bufferline").setup{}
 EOF
+
+
+
 
 " ###########################################################################
 " glepnir/dashboard-nvim
@@ -435,6 +451,15 @@ local kind_icons = {
 
 --require'lspconfig'.dartls.setup{}
 
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local feedkey = function(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 local cmp = require'cmp'
 cmp.setup(
 {
@@ -443,11 +468,6 @@ cmp.setup(
       vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     end,
   },
-  mapping = {
-    ['<CR>'] = cmp.mapping(cmp.mapping.confirm(), { select = true }),
-    ['C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['C-j'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-    },
 
   window = {
     completion = cmp.config.window.bordered(),
@@ -475,6 +495,17 @@ cmp.setup(
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif vim.fn["vsnip#jumpable"](1) == 1 then
+        feedkey("<Plug>(vsnip-jump-next)", "")
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+      end
+    end, {"i", "s"}),
   }),
 
   sources = cmp.config.sources({
