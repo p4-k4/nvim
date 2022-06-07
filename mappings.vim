@@ -40,7 +40,6 @@ nnoremap <Leader>bd :bd<CR>
 
 
 
-
 " ###########################################################################
 " junegunn/vim-plug
 " ###########################################################################
@@ -57,6 +56,14 @@ nnoremap <leader>dr <cmd>DapToggleRepl<cr>
 nnoremap <leader>di <cmd>DapStepInto<cr>
 nnoremap <leader>do <cmd>DapStepOut<cr>
 nnoremap <leader>dl <cmd>DapShowLog<cr>
+
+
+
+
+" ###########################################################################
+" Fugitive
+" ###########################################################################
+noremap <leader>gs <cmd>Git stage<cr>
 
 
 
@@ -114,3 +121,7 @@ nnoremap <leader>wl <cmd>FocusSplitRight<cr>
 " NTimUntersberger/neogit'
 " ###########################################################################
 nnoremap <leader>gg <cmd>Neogit<cr>
+
+
+
+
