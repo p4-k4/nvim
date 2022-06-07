@@ -20,14 +20,14 @@ nnoremap <Leader>qq :q<cr>
 " VIM - LSP
 " ###########################################################################
 nnoremap <silent> lc <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> ld <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> lD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> lh <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> li <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> ls <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> lt <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> lr <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> lf <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <Leader> ld <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <Leader> lD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <Leader> lh <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader> li <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <Leader> ls <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <Leader> lt <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <Leader> lr <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <Leader> lf <cmd>lua vim.lsp.buf.formatting()<CR>
 
 
 
@@ -67,7 +67,7 @@ nnoremap <leader>dl <cmd>DapShowLog<cr>
 nnoremap <leader>. <cmd>Telescope find_files<cr>
 nnoremap <leader>, <cmd>Telescope buffers<cr>
 nnoremap <leader>/ <cmd>Telescope file_browser<cr>
-nnoremap <leader>l <cmd>Telescope live_grep<cr>
+" nnoremap <leader>l <cmd>Telescope live_grep<cr>
 nnoremap <leader>h <cmd>Telescope help_tags<cr>
 nnoremap <leader>ghg <cmd>Telescope gh gist<cr>
 nnoremap <leader><leader> <cmd>Telescope keymaps<cr>

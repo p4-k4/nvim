@@ -23,6 +23,7 @@ Plug 'beauwilliams/focus.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'TimUntersberger/neogit'
 Plug 'andweeb/presence.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sedm0784/vim-resize-mode'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
@@ -31,14 +32,14 @@ Plug 'nvim-telescope/telescope-github.nvim'
 " Plug 'nvim-telescope/telescope-project.nvim'
 " Plug 'dunstontc/projectile.nvim'
 " Plug 'tpope/vim-sensible'
-" Plug 'kyazdani42/nvim-tree.lua'
 
 " UI
-Plug 'romgrk/barbar.nvim'
+" Plug 'romgrk/barbar.nvim'
 Plug 'navarasu/onedark.nvim'
 Plug 'mortepau/codicons.nvim'
-Plug 'vim-airline/vim-airline'
+Plug 'lambdalisue/battery.vim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
@@ -56,12 +57,36 @@ Plug 'mfussenegger/nvim-dap'
 call plug#end()
 
 
+
+" ###########################################################################
+" vim-airline/vim-airline
+" ###########################################################################
+let g:battery#update_tabline = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#tabline#enabled = 1
+
+
+
+
+" ###########################################################################
+" yazdani42/nvim-tree.lua
+" ###########################################################################
+lua << EOF
+--require'nvim-tree'.setup {}
+EOF
+
+
+
+
 " ###########################################################################
 " folke/trouble.nvim
 " ###########################################################################
 lua << EOF
 require("trouble").setup {}
 EOF
+
+
 
 
 " ###########################################################################
@@ -177,7 +202,7 @@ cmp.setup(
     end,
   },
   mapping = {
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping(cmp.mapping.confirm(), { select = true }),
     ['C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
     ['C-j'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
     },

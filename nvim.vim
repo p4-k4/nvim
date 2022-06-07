@@ -7,6 +7,7 @@ set shiftwidth=2
 set number
 set nowrap
 set mouse =a
+set t_Co=256
 
 " Remember last editing position
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
