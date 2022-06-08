@@ -19,7 +19,7 @@ Plug 'dcampos/cmp-snippy'
 " Plug 'hrsh7th/cmp-vsnip'
 
 " Snippets
-Plug 'rafamadriz/friendly-snippets'
+" Plug 'rafamadriz/friendly-snippets'
 Plug 'benfowler/telescope-luasnip.nvim'
 Plug 'L3MON4D3/LuaSnip'
 " Plug 'hrsh7th/vim-vsnip'
@@ -84,7 +84,9 @@ call plug#end()
 " ###########################################################################
 lua << EOF
 require('telescope').load_extension('luasnip')
-require("luasnip.loaders.from_vscode").lazy_load()
+-- require("luasnip.loaders.from_snipmate").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
+
 EOF
 
 

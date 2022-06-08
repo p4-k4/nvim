@@ -137,4 +137,4 @@ nnoremap <leader>gg <cmd>Neogit<cr>
 " ###########################################################################
 " LuaSnip
 " ###########################################################################
-nnoremap <leader>s <cmd>Telescope lua snip<cr>
+nnoremap <leader>s <cmd>Telescope luasnip<cr>
