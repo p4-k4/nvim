@@ -1,5 +1,10 @@
 call plug#begin()
 
+" ###########################################################################
+" ###########################################################################
+" ###########################################################################
+" ###########################################################################
+"
 " Completion
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind.nvim'
@@ -10,11 +15,17 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-vsnip'
+Plug 'dcampos/cmp-snippy'
+" Plug 'hrsh7th/cmp-vsnip'
 
 " Snippets
-Plug 'hrsh7th/vim-vsnip'
-Plug 'mthuong/vscode-flutter-freezed-helper'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'benfowler/telescope-luasnip.nvim'
+Plug 'L3MON4D3/LuaSnip'
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'dcampos/nvim-snippy'
+" Plug 'honza/vim-snippets'
+" Plug 'mthuong/vscode-flutter-freezed-helper'
 
 " Utils
 Plug 'folke/trouble.nvim'
@@ -37,7 +48,6 @@ Plug 'glepnir/dashboard-nvim'
 " Plug 'tpope/vim-sensible'
 
 " UI
-" Plug 'romgrk/barbar.nvim'
 Plug 'navarasu/onedark.nvim'
 Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'mortepau/codicons.nvim'
@@ -45,10 +55,10 @@ Plug 'lambdalisue/battery.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'lukas-reineke/indent-blankline.nvim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'enricobacis/vim-airline-clock'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'lukas-reineke/indent-blankline.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
@@ -64,12 +74,18 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mfussenegger/nvim-dap'
 call plug#end()
 
+" ###########################################################################
+
+
+
 
 " ###########################################################################
-" Vsnip
+" Telescope - luasnip
 " ###########################################################################
-"
-let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip/')
+lua << EOF
+require('telescope').load_extension('luasnip')
+require("luasnip.loaders.from_vscode").lazy_load()
+EOF
 
 
 
@@ -79,6 +95,7 @@ let g:vsnip_snippet_dir = expand('~/.config/nvim/vsnip/')
 " ###########################################################################
 lua << EOF
 require("bufferline").setup{}
+
 EOF
 
 
@@ -449,25 +466,22 @@ local kind_icons = {
   TypeParameter = ""
 }
 
---require'lspconfig'.dartls.setup{}
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
+local luasnip = require("luasnip")
 
 local cmp = require'cmp'
 cmp.setup(
 {
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-    end,
-  },
+   snippet = {
+     expand = function(args)
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+     end,
+   },
 
   window = {
     completion = cmp.config.window.bordered(),
@@ -495,22 +509,22 @@ cmp.setup(
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif vim.fn["vsnip#jumpable"](1) == 1 then
-        feedkey("<Plug>(vsnip-jump-next)", "")
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        fallback()
       end
-    end, {"i", "s"}),
+    end, { "i", "s" }),
   }),
 
   sources = cmp.config.sources({
     { name = 'nvim_lsp'},
-    { name = 'vsnip'},
+    { name = 'luasnip'},
   }, {
     { name = 'buffer'},
   })
@@ -599,6 +613,8 @@ EOF
 " nvim-telescope/telescope
 " ###########################################################################
 lua << EOF
+
+
 
 require("telescope").setup {
   sort_mru = true,

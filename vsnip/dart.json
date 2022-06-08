@@ -1,17 +1,30 @@
 {
-  "Create a cloud_firestore_odm model": {
-    "prefix": "cfo",
+  "free": {
+    "prefix": ["frr"],
     "body": [
-      "@JsonSerializable(explicitToJson: true)",
-      "class $1 {",
-      "",
-      "  $1({",
-      "    this.$2,",
-      "  });",
-      "",
-      "  final $3? $2",
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "part 'model.freezed.dart';",
+      "part 'model.g.dart';",
+      "@freezed",
+      "class Model with _$Model {",
+      "  factory Model.first(String a) = First",
+      "  factory Model.second(int b, bool c) = Second;",
+      "  factory Model.fromJson(Map<String, dynamic> json) => _$ModelFromJson(json);",
       "}"
     ],
-    "description": "."
+    "description": "A freezed class"
   }
+}
+
+
+
+
+
+
+
+
+  
+  
+
+  
 }

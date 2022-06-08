@@ -12,22 +12,22 @@ let mapleader = " "
 " ###########################################################################
 nnoremap <Leader>si :source $MYVIMRC<cr>
 nnoremap <Leader>ve :e ~/.config/nvim/init.vim<cr>
-nnoremap <Leader>qq :q<cr>
+nnoremap <Leader>qq :qa<cr>
 
 
 
 " ###########################################################################
 " VIM - LSP
 " ###########################################################################
-nnoremap <silent> lc <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <Leader> ld <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <Leader> lD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <Leader> lh <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader> li <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <Leader> ls <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <Leader> lt <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <Leader> lr <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <Leader> lf <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <Leader>lc <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <Leader>ld <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <Leader>lD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <Leader>lh <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader>li <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <Leader>ls <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <Leader>lt <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <Leader>lr <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <Leader>lf <cmd>lua vim.lsp.buf.formatting()<CR>
 
 
 
@@ -134,3 +134,7 @@ nnoremap <leader>gg <cmd>Neogit<cr>
 
 
 
+" ###########################################################################
+" LuaSnip
+" ###########################################################################
+nnoremap <leader>s <cmd>Telescope lua snip<cr>
