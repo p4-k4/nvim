@@ -14,6 +14,8 @@ nnoremap <Leader>si :source $MYVIMRC<cr>
 nnoremap <Leader>ve :e ~/.config/nvim/init.vim<cr>
 nnoremap <Leader>qq :qa<cr>
 
+" Show diagnostics in a floating window
+nnoremap <Leader>e <cmd>lua vim.diagnostic.open_float()<CR>
 
 
 " ###########################################################################
