@@ -83,7 +83,7 @@ noremap <leader>gs <cmd>Git stage<cr>
 nnoremap <leader>. <cmd>Telescope find_files<cr>
 nnoremap <leader>, <cmd>Telescope buffers<cr>
 nnoremap <leader>/ <cmd>Telescope file_browser<cr>
-" nnoremap <leader>l <cmd>Telescope live_grep<cr>
+nnoremap <leader>l <cmd>Telescope live_grep<cr>
 nnoremap <leader>h <cmd>Telescope help_tags<cr>
 nnoremap <leader>ghg <cmd>Telescope gh gist<cr>
 nnoremap <leader><leader> <cmd>Telescope keymaps<cr>
