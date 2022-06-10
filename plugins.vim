@@ -1,10 +1,5 @@
 call plug#begin()
 
-" ###########################################################################
-" ###########################################################################
-" ###########################################################################
-" ###########################################################################
-"
 " Completion
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind.nvim'
@@ -19,43 +14,46 @@ Plug 'dcampos/cmp-snippy'
 " Plug 'hrsh7th/cmp-vsnip'
 
 " Snippets
-" Plug 'rafamadriz/friendly-snippets'
-Plug 'benfowler/telescope-luasnip.nvim'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'benfowler/telescope-luasnip.nvim'
 " Plug 'hrsh7th/vim-vsnip'
-" Plug 'dcampos/nvim-snippy'
 " Plug 'honza/vim-snippets'
+" Plug 'dcampos/nvim-snippy'
+" Plug 'rafamadriz/friendly-snippets'
 " Plug 'mthuong/vscode-flutter-freezed-helper'
 
 " Utils
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-fugitive'
 Plug 'folke/trouble.nvim'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'beauwilliams/focus.nvim'
 Plug 'windwp/nvim-autopairs'
-Plug 'TimUntersberger/neogit'
 Plug 'andweeb/presence.nvim'
+Plug 'preservim/vim-markdown'
+Plug 'beauwilliams/focus.nvim'
+Plug 'TimUntersberger/neogit'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sedm0784/vim-resize-mode'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-github.nvim'
-Plug 'tpope/vim-fugitive'
-Plug 'glepnir/dashboard-nvim'
-" Plug 'nvim-telescope/telescope-file-browser.nvim'
-" Plug 'nvim-telescope/telescope-project.nvim'
-" Plug 'dunstontc/projectile.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 " Plug 'tpope/vim-sensible'
+" Plug 'dunstontc/projectile.nvim'
+" Plug 'nvim-telescope/telescope-project.nvim'
+" Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " UI
 Plug 'navarasu/onedark.nvim'
-Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'mortepau/codicons.nvim'
+Plug 'glepnir/dashboard-nvim'
 Plug 'lambdalisue/battery.vim'
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'NTBBloodbath/doom-one.nvim'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 " Plug 'vim-airline/vim-airline'
 " Plug 'enricobacis/vim-airline-clock'
 " Plug 'vim-airline/vim-airline-themes'
@@ -71,11 +69,76 @@ Plug 'akinsho/flutter-tools.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Debugging
+Plug 'vim-test/vim-test'
 Plug 'mfussenegger/nvim-dap'
+
 call plug#end()
 
-" ###########################################################################
 
+
+
+" ###########################################################################
+" vim-test/vim-test
+" ###########################################################################
+let test#strategy = "neovim"
+
+
+
+
+" ###########################################################################
+" folke/trouble.nvim'
+" ###########################################################################
+lua << EOF
+
+require("trouble").setup
+  {
+    position = "bottom", -- position of the list can be: bottom, top, left, right
+    height = 10, -- height of the trouble list when position is top or bottom
+    width = 50, -- width of the list when position is left or right
+    icons = true, -- use devicons for filenames
+    mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+    fold_open = "", -- icon used for open folds
+    fold_closed = "", -- icon used for closed folds
+    group = true, -- group results by file
+    padding = true, -- add an extra new line on top of the list
+    action_keys = { -- key mappings for actions in the trouble list
+        -- map to {} to remove a mapping, for example:
+        -- close = {},
+        close = "q", -- close the list
+        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+        refresh = "r", -- manually refresh
+        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+        open_split = { "<c-x>" }, -- open buffer in new split
+        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+        open_tab = { "<c-t>" }, -- open buffer in new tab
+        jump_close = {"o"}, -- jump to the diagnostic and close the list
+        toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+        toggle_preview = "P", -- toggle auto_preview
+        hover = "K", -- opens a small popup with the full multiline message
+        preview = "p", -- preview the diagnostic location
+        close_folds = {"zM", "zm"}, -- close all folds
+        open_folds = {"zR", "zr"}, -- open all folds
+        toggle_fold = {"zA", "za"}, -- toggle fold of current file
+        previous = "k", -- preview item
+        next = "j" -- next item
+    },
+    indent_lines = true, -- add an indent guide below the fold icons
+    auto_open = false, -- automatically open the list when you have diagnostics
+    auto_close = false, -- automatically close the list when you have no diagnostics
+    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+    auto_fold = false, -- automatically fold a file trouble list at creation
+    auto_jump = {"lsp_definitions"}, -- for the given modes, automatically jump if there is only a single result
+    signs = {
+        -- icons / text used for a diagnostic
+        error = "",
+        warning = "",
+        hint = "",
+        information = "",
+        other = "﫠"
+    },
+    use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+}
+EOF
 
 
 

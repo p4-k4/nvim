@@ -96,8 +96,8 @@ nnoremap <leader><leader> <cmd>Telescope keymaps<cr>
 " ###########################################################################
 " folke/trouble.nvim
 " ###########################################################################
-nnoremap <leader>t <cmd>Trouble<cr>
-nnoremap <leader>T <cmd>TroubleClose<cr>
+" nnoremap <leader>t <cmd>Trouble<cr>
+" nnoremap <leader>T <cmd>TroubleClose<cr>
 
 
 
@@ -140,3 +140,13 @@ nnoremap <leader>gg <cmd>Neogit<cr>
 " LuaSnip
 " ###########################################################################
 nnoremap <leader>s <cmd>Telescope luasnip<cr>
+
+
+" ###########################################################################
+" vim-test
+" ###########################################################################
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>

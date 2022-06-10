@@ -4,7 +4,7 @@
 " ###########################################################################
 let g:onedark_config = {'style': 'darker'}
 
-colorscheme onedark
+colorscheme github_dark
 
 
 
