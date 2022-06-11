@@ -4,7 +4,7 @@
 " ###########################################################################
 let g:onedark_config = {'style': 'darker'}
 
-colorscheme github_dark
+colorscheme tokyonight
 
 
 

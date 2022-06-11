@@ -54,6 +54,7 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " Plug 'vim-airline/vim-airline'
 " Plug 'enricobacis/vim-airline-clock'
 " Plug 'vim-airline/vim-airline-themes'
@@ -74,6 +75,86 @@ Plug 'mfussenegger/nvim-dap'
 
 call plug#end()
 
+
+" ###########################################################################
+" lsp-config
+" ###########################################################################
+lua << EOF
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+local border = {
+      {"╭", "FloatBorder"},
+      {"━", "FloatBorder"},
+      {"╮", "FloatBorder"},
+      {"│", "FloatBorder"},
+      {"╯", "FloatBorder"},
+      {"━", "FloatBorder"},
+      {"╰", "FloatBorder"},
+      {"│", "FloatBorder"},
+}
+
+-- LSP settings (for overriding per client)
+local handlers =  {
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border }),
+}
+-- require 'lspconfig'.dartls.setup { handlers=handlers }
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
+-- Custom diag signs
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+-- Completion kinds
+local M = {}
+
+M.icons = {
+  Class = " ",
+  Color = " ",
+  Constant = " ",
+  Constructor = " ",
+  Enum = "了 ",
+  EnumMember = " ",
+  Field = " ",
+  File = " ",
+  Folder = " ",
+  Function = " ",
+  Interface = "ﰮ ",
+  Keyword = " ",
+  Method = "ƒ ",
+  Module = " ",
+  Property = " ",
+  Snippet = "﬌ ",
+  Struct = " ",
+  Text = " ",
+  Unit = " ",
+  Value = " ",
+  Variable = " ",
+}
+
+function M.setup()
+  local kinds = vim.lsp.protocol.CompletionItemKind
+  for i, kind in ipairs(kinds) do
+    kinds[i] = M.icons[kind] or kind
+  end
+end
+
+return M
+EOF
 
 
 
@@ -149,18 +230,16 @@ lua << EOF
 require('telescope').load_extension('luasnip')
 -- require("luasnip.loaders.from_snipmate").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
-
 EOF
 
 
 
 
 " ###########################################################################
-" Bufferline 
+" Bufferline
 " ###########################################################################
 lua << EOF
 require("bufferline").setup{}
-
 EOF
 
 
@@ -516,6 +595,9 @@ EOF
 " hrsh7th/nvim-cmp
 " ###########################################################################
 lua <<EOF
+
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
 
 local kind_icons = {
   Text = "",
