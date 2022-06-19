@@ -49,6 +49,7 @@ Plug 'mortepau/codicons.nvim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'lambdalisue/battery.vim'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'xiyaowong/nvim-transparent'
 Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -74,6 +75,32 @@ Plug 'vim-test/vim-test'
 Plug 'mfussenegger/nvim-dap'
 
 call plug#end()
+
+
+
+
+" ###########################################################################
+" xiyaowong/nvim-transparent
+" ###########################################################################
+lua << EOF
+require("transparent").setup({
+  enable = true, -- boolean: enable transparent
+  extra_groups = { -- table/string: additional groups that should be cleared
+    -- In particular, when you set it to 'all', that means all available groups
+
+    -- example of akinsho/nvim-bufferline.lua
+    "BufferLineTabClose",
+    "BufferlineBufferSelected",
+    "BufferLineFill",
+    "BufferLineBackground",
+    "BufferLineSeparator",
+    "BufferLineIndicatorSelected",
+  },
+  exclude = {}, -- table: groups you don't want to clear
+})
+EOF
+
+
 
 
 " ###########################################################################
@@ -776,8 +803,20 @@ EOF
 lua << EOF
 
 
-
+local actions = require('telescope.actions')
 require("telescope").setup {
+  defaults = {
+	initial_mode = "insert",
+        mappings = {
+            i = {
+                -- ['<esc>'] = actions.close,
+                ['<C-j>'] = actions.move_selection_next,
+                ['<C-k>'] = actions.move_selection_previous,
+            },
+	  n = {
+	    }
+        },
+    },
   sort_mru = true,
   sort_lastused = true,
   ignore_current_buffer = true,
