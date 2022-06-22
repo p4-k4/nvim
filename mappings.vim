@@ -38,7 +38,7 @@ nnoremap <Leader>lf <cmd>lua vim.lsp.buf.formatting()<CR>
 " BUFFERS
 " ###########################################################################
 nnoremap <leader>fs :w<CR>
-nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>bd :bd \| bp#<CR>
 
 
 
