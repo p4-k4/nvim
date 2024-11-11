@@ -74,7 +74,6 @@ vim.keymap.set("n", "<Space>q", vim.diagnostic.setloclist, { desc = "Add diagnos
 -- Flutter operations layer (;)
 vim.keymap.set("n", "<leader>fd", "<cmd>FlutterDevices<cr>", { desc = "Flutter Devices" })
 vim.keymap.set("n", "<leader>fD", "<cmd>FlutterDetach<cr>", { desc = "Flutter Detach" })
-vim.keymap.set("n", "<leader>fr", "<cmd>FlutterRun<cr>", { desc = "Flutter Run" })
 vim.keymap.set(
   "n",
   "<leader>fm",
@@ -82,8 +81,8 @@ vim.keymap.set(
   { desc = "Flutter Run with macros expiriment" }
 )
 vim.keymap.set("n", "<leader>fq", "<cmd>FlutterQuit<cr>", { desc = "Flutter Quit" })
-vim.keymap.set("n", "<leader>fR", "<cmd>FlutterReload<cr>", { desc = "Flutter Reload" })
-vim.keymap.set("n", "<leader>fs", "<cmd>FlutterRestart<cr>", { desc = "Flutter Restart" })
+vim.keymap.set("n", "<leader>fr", "<cmd>FlutterReload<cr>", { desc = "Flutter Reload" })
+vim.keymap.set("n", "<leader>fR", "<cmd>FlutterRestart<cr>", { desc = "Flutter Restart" })
 vim.keymap.set("n", "<leader>fu", "<cmd>FlutterPubUpgrade<cr>", { desc = "Flutter Pub Upgrade" })
 vim.keymap.set("n", "<leader>fg", "<cmd>FlutterPubGet<cr>", { desc = "Flutter Pub Get" })
 
