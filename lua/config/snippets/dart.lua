@@ -6,32 +6,42 @@ local i = ls.insert_node
 local rep = require("luasnip.extras").rep
 local fmt = require("luasnip.extras.fmt").fmt
 
--- Explicitly add snippets to the dart filetype
 ls.add_snippets("dart", {
   s(
-    "scf",
+    "view",
     fmt(
       [[
+import 'package:flutter/material.dart';
+import 'package:subpub/subpub.dart';
+
 class {}View extends StatelessWidget {{
   const {}View({{super.key}});
   @override
   Widget build(BuildContext context) {{
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('{}'),
-      ),{}
-    );
+    return Subscriber((_) => Scaffold(appBar: AppBar(title: const Text('{}'))));
   }}
 }}]],
       {
-        i(1, "Home"),
+        i(1, "My"),
         rep(1),
-        i(2, "Home"),
-        i(3, ""),
+        rep(1),
       }
     )
   ),
 })
 
--- Return an empty table since we're using add_snippets directly
+ls.add_snippets("dart", {
+  s(
+    "pub",
+    fmt(
+      [[
+@Publish()
+class {}Publisher extends Publisher {{}}]],
+      {
+        i(1, "My"),
+      }
+    )
+  ),
+})
+
 return {}
