@@ -16,6 +16,7 @@ return {
     { "<leader>fpg", "<cmd>FlutterPubGet<cr>" },
   },
   opts = {
+    open_cmd = "botright split",
     device = true,
     widget_guides = {
       enabled = true,

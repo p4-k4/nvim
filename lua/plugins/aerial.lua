@@ -1,6 +1,9 @@
 return {
   "stevearc/aerial.nvim",
-  opts = {},
+  opts = {
+    width = 43,
+    open_automatic = true,
+  },
   -- Optional dependencies
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
