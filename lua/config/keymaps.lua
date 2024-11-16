@@ -37,9 +37,9 @@ vim.keymap.set("n", "<Space>n", "5j", { desc = "Move cursor 5 lines down" })
 vim.keymap.set("n", "<Space>e", "5k", { desc = "Move cursor 5 lines up" })
 
 -- File operations layer (,)
-vim.keymap.set("n", ",w", ":w<CR>", { desc = "Save file" })
-vim.keymap.set("n", ",q", ":q<CR>", { desc = "Quit" })
-vim.keymap.set("n", ",x", ":x<CR>", { desc = "Save and quit" })
+vim.keymap.set("n", "<Space>w", ":w<CR>", { desc = "Save file" })
+vim.keymap.set("n", "<Space>q", "<Space>q<CR>", { desc = "Quit" })
+
 vim.keymap.set("n", ",e", "<cmd>Neotree toggle<cr>", { desc = "Toggle file explorer" })
 vim.keymap.set("n", ",f", ":Telescope find_files<CR>", { desc = "Find files" })
 vim.keymap.set("n", ",g", ":Telescope live_grep<CR>", { desc = "Live grep" })
