@@ -16,7 +16,11 @@ return {
     { "<leader>fpg", "<cmd>FlutterPubGet<cr>" },
   },
   opts = {
-    open_cmd = "botright split",
+    dev_log = {
+      enabled = true,
+      notify_errors = false, -- if there is an error whilst running then notify the user
+      open_cmd = "botright split", -- command to use to open the log buffer
+    },
     device = true,
     widget_guides = {
       enabled = true,
