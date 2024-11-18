@@ -42,6 +42,7 @@ return {
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
+        { name = "supermaven" },
       }, {
         { name = "buffer" },
       }),
@@ -57,6 +58,7 @@ return {
       },
       formatting = {
         format = function(entry, item)
+          before = require("tailwind-tools.cmp").lspkind_format
           local icons = LazyVim.config.icons.kinds
           if icons[item.kind] then
             item.kind = icons[item.kind] .. item.kind
