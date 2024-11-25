@@ -1,32 +1,32 @@
 -- Line navigation
-vim.keymap.set("n", "'H", "0", { desc = "Move to very start of line" })
-vim.keymap.set("n", "'h", "^", { desc = "Move to start of line (non-whitespace)" })
-vim.keymap.set("n", "'l", "$", { desc = "Move to end of line" })
-vim.keymap.set("n", "'j", "gj", { desc = "Move down (wrap-aware)" })
-vim.keymap.set("n", "'k", "gk", { desc = "Move up (wrap-aware)" })
-vim.keymap.set("n", "'m", "gm", { desc = "Move to middle of line" })
+vim.keymap.set("n", "<leader>gh", "^", { desc = "Move to start of line (non-whitespace)" })
+vim.keymap.set("n", "<leader>gH", "0", { desc = "Move to very start of line" })
+vim.keymap.set("n", "<leader>gl", "$", { desc = "Move to end of line" })
+vim.keymap.set("n", "<leader>gj", "gj", { desc = "Move down (wrap-aware)" })
+vim.keymap.set("n", "<leader>gk", "gk", { desc = "Move up (wrap-aware)" })
+vim.keymap.set("n", "<leader>gm", "gm", { desc = "Move to middle of line" })
 
 -- Document navigation
-vim.keymap.set("n", "'t", "gg", { desc = "Move to top of document" })
-vim.keymap.set("n", "'b", "G", { desc = "Move to bottom of document" })
-vim.keymap.set("n", "'d", "<C-d>", { desc = "Move half page down" })
-vim.keymap.set("n", "'u", "<C-u>", { desc = "Move half page up" })
-vim.keymap.set("n", "'f", "<C-f>", { desc = "Move full page down" })
-vim.keymap.set("n", "'r", "<C-b>", { desc = "Move full page up" })
+vim.keymap.set("n", "<leader>gt", "gg", { desc = "Move to top of document" })
+vim.keymap.set("n", "<leader>gb", "G", { desc = "Move to bottom of document" })
+-- vim.keymap.set("n", "'d", "<C-d>", { desc = "Move half page down" })
+-- vim.keymap.set("n", "'u", "<C-u>", { desc = "Move half page up" })
+-- vim.keymap.set("n", "'f", "<C-f>", { desc = "Move full page down" })
+-- vim.keymap.set("n", "'r", "<C-b>", { desc = "Move full page up" })
 
 -- Enhanced line operations
-vim.keymap.set("n", "'y", "yy", { desc = "Yank entire line" })
-vim.keymap.set("n", "'D", "dd", { desc = "Delete entire line" })
-vim.keymap.set("n", "'c", "cc", { desc = "Change entire line" })
+-- vim.keymap.set("n", "'y", "yy", { desc = "Yank entire line" })
+-- vim.keymap.set("n", "'D", "dd", { desc = "Delete entire line" })
+-- vim.keymap.set("n", "'c", "cc", { desc = "Change entire line" })
 
 -- Visual mode line selection
-vim.keymap.set("v", "'h", "0", { desc = "Select to start of line" })
-vim.keymap.set("v", "'l", "$", { desc = "Select to end of line" })
-vim.keymap.set("v", "'t", "gg", { desc = "Select to top of document" })
-vim.keymap.set("v", "'b", "G", { desc = "Select to bottom of document" })
+vim.keymap.set("v", "<leader>vh", "0", { desc = "Select to start of line" })
+vim.keymap.set("v", "<leader>vl", "$", { desc = "Select to end of line" })
+vim.keymap.set("v", "<leader>vk", "gg", { desc = "Select to top of document" })
+vim.keymap.set("v", "<leader>vj", "G", { desc = "Select to bottom of document" })
 
 -- Visual selection of current line from first non-whitespace character
-vim.keymap.set("n", "'v", "^vg_", { desc = "Select line content (no whitespace)" })
+vim.keymap.set("n", "vv", "^vg_", { desc = "Select line content (no whitespace)" })
 
 -- Navigation layer (Space)
 vim.keymap.set("n", "<Space>h", "<C-w>h", { desc = "Go to left window" })
@@ -40,10 +40,11 @@ vim.keymap.set("n", "<Space>e", "5k", { desc = "Move cursor 5 lines up" })
 vim.keymap.set("n", "<Space>w", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<Space>q", "<Space>q<CR>", { desc = "Quit" })
 
-vim.keymap.set("n", ",e", "<cmd>Neotree toggle<cr>", { desc = "Toggle file explorer" })
-vim.keymap.set("n", ",f", ":Telescope find_files<CR>", { desc = "Find files" })
-vim.keymap.set("n", ",g", ":Telescope live_grep<CR>", { desc = "Live grep" })
-vim.keymap.set("n", ",b", ":Telescope buffers<CR>", { desc = "List buffers" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle file explorer" })
+
+-- vim.keymap.set("n", ",f", ":Telescope find_files<CR>", { desc = "Find files" })
+-- vim.keymap.set("n", ",g", ":Telescope live_grep<CR>", { desc = "Live grep" })
+-- vim.keymap.set("n", ",b", ":Telescope buffers<CR>", { desc = "List buffers" })
 
 -- LSP functions layer (.)
 vim.keymap.set("n", ".d", vim.lsp.buf.definition, { desc = "Go to definition" })
